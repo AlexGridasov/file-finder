@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FileManagerTest {
 
@@ -28,7 +30,7 @@ class FileManagerTest {
     }
 
     @Test
-    void listFilesUsingFilesList() throws IOException {
+    void listFilesUsingFilesList() {
         // Given
         String dir = "data/";
         FileManager fileManager = new FileManager();
@@ -47,9 +49,9 @@ class FileManagerTest {
         FileManager fileManager = new FileManager();
 
         // When
-        File resource = fileManager.getResource(dir);
+        Optional<File> optResource = fileManager.getResource(dir);
 
         // Then
-        assertNotNull(resource);
+        assertTrue(optResource.isPresent());
     }
 }
